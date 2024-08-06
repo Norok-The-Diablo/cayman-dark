@@ -28,6 +28,12 @@
         DarkReader.enable();
     </script>
     {% endunless %}
+    <style>
+      .btn.disabled {
+        pointer-events: none;
+        opacity: 0.6;
+      }
+    </style>
   </head>
   <body>
 
@@ -38,11 +44,12 @@
         <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
       {% endif %}
       {% if site.show_downloads %}
-        <a href="https://meganmoodie.github.io/access/" class="btn">Access Features</a>
-        <a href="https://meganmoodie.github.io/contact/" class="btn">Contact Me</a>
-        <a href="https://meganmoodie.github.io/lit/" class="btn">Literature & Journalism</a>
-        <a href="https://meganmoodie.github.io/public/" class="btn">Public Appearances</a>
-        <a href="https://meganmoodie.github.io/scholar/" class="btn">Scholarly Works</a>
+        <a href="https://meganmoodie.github.io/access/" class="btn" id="access">Access Features</a>
+        <a href="https://meganmoodie.github.io/contact/" class="btn" id="contact">Contact Me</a>
+        <a href="https://meganmoodie.github.io/" class="btn" id="home">Home</a>
+        <a href="https://meganmoodie.github.io/lit/" class="btn" id="lit">Literature & Journalism</a>
+        <a href="https://meganmoodie.github.io/public/" class="btn" id="public">Public Appearances</a>
+        <a href="https://meganmoodie.github.io/scholar/" class="btn" id="scholar">Scholarly Works</a>
       {% endif %}
     </header>
 
@@ -55,5 +62,17 @@
         {% endif %}
       </footer>
     </main>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var currentUrl = window.location.href;
+        var buttons = document.querySelectorAll('.btn');
+
+        buttons.forEach(function(button) {
+          if (button.href === currentUrl) {
+            button.classList.add('disabled');
+          }
+        });
+      });
+    </script>
   </body>
 </html>
